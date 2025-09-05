@@ -1,0 +1,2 @@
+[nxos_devices]
+N9K1 

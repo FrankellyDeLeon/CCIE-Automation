@@ -1,0 +1,16 @@
+- name: Configure VLANs on Cisco NX-OS   # Name of the playbook for identification
+  hosts: all                            # Target all hosts defined in the inventory
+  connection: ssh                    # Use local connection to run the playbook (e.g., via SSH)
+  gather_facts: false                  # Skip gathering facts to speed up execution since not needed here
+
+  tasks:                             # List of tasks to execute on the target devices
+    - name: Configure VLANs           # Task name describing the action
+      cisco.nxos.nxos_vlans:         # Use the Cisco NX-OS VLANs Ansible module
+        config:                      # VLAN configuration details
+          - vlan_id: 101             # Define VLAN with ID 101
+            name: VLAN101            # Assign the name "VLAN101" to VLAN 101
+          - vlan_id: 102             # Define VLAN with ID 102
+            name: VLAN102            # Assign the name "VLAN102" to VLAN 102
+          - vlan_id: 103             # Define VLAN with ID 103
+            name: VLAN103            # Assign the name "VLAN103" to VLAN 103 
+        state: merged                # Merge VLAN config with existing config (add/update without removing others)
